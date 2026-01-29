@@ -3,7 +3,6 @@
 Final verification and summary report.
 """
 
-import os
 from pathlib import Path
 
 
@@ -155,7 +154,7 @@ def main():
         print(f"  ❌ Pipeline module failed: {e}")
     
     try:
-        from src.entity_extractor import EntityExtractor
+        from src.entity_extractor import SpacyEntityExtractor
         print("  ✅ Entity extractor module works")
     except Exception as e:
         print(f"  ❌ Entity extractor failed: {e}")

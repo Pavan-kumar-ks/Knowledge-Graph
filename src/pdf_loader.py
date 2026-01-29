@@ -5,7 +5,7 @@ Handles PDF file processing and text extraction.
 
 import logging
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict
 
 from PyPDF2 import PdfReader
 

@@ -1,3 +1,4 @@
+pycryptodome
 PyPDF2>=3.0.0
 neo4j>=5.0.0
 python-dotenv>=0.19.0

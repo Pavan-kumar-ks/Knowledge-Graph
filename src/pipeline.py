@@ -12,7 +12,7 @@ import logging
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from src.chunker import create_chunks
 from src.entity_extractor import SpacyEntityExtractor
@@ -73,7 +73,7 @@ class PolicyGraphPipeline:
         
         self.stats = {}
     
-    def run(self, pdf_filename: str = None) -> Dict[str, Any]:
+    def run(self, pdf_filename: Optional[str] = None) -> Dict[str, Any]:
         """
         Execute full pipeline.
         
@@ -122,7 +122,7 @@ class PolicyGraphPipeline:
             logger.error(f"Pipeline failed: {e}", exc_info=True)
             return {"status": "failed", "error": str(e)}
     
-    def _load_pdfs(self, pdf_filename: str = None) -> Dict[str, str]:
+    def _load_pdfs(self, pdf_filename: Optional[str] = None) -> Dict[str, str]:
         """Load PDFs from directory."""
         logger.info("Step 1: Loading PDFs...")
         if pdf_filename:

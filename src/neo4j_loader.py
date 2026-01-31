@@ -49,7 +49,7 @@ class Neo4jConnection:
             True if connection is valid
         """
         try:
-            with self.driver.session() as session:
+            with self.driver.session() as session:  # type: ignore
                 session.run("RETURN 1")
             logger.info("✅ Neo4j connection verified")
             return True
@@ -341,7 +341,7 @@ def load_graph(
         batch = chunks[batch_start:batch_end]
         
         # Use a single transaction per batch
-        with conn.driver.session() as session:
+        with conn.driver.session() as session:  # type: ignore
             with session.begin_transaction() as tx:
                 for chunk in batch:
                     try:

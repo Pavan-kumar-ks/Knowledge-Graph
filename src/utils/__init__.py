@@ -37,7 +37,7 @@ def setup_logging(
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(formatter)
         if hasattr(console_handler.stream, 'reconfigure'):
-            console_handler.stream.reconfigure(encoding='utf-8')
+            console_handler.stream.reconfigure(encoding='utf-8')  # type: ignore
         root_logger.addHandler(console_handler)
     except Exception:
         # Fallback if reconfigure is not available

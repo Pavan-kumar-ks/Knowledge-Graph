@@ -57,7 +57,7 @@ def main():
     # Test 5: Chunker
     print("\n✓ Test 5: Chunker Module")
     try:
-        from src.chunker import (chunk_text, create_chunks, is_header,
+        from src.chunker import (chunk_text_semantic, create_chunks, is_header,
                                  split_into_sections)
         result = is_header("1. Introduction")
         print(f"  ✅ Chunker functions imported")
@@ -69,17 +69,16 @@ def main():
     # Test 6: Entity Extractor
     print("\n✓ Test 6: Entity Extractor")
     try:
-        from src.entity_extractor import (EntityExtractor,
-                                          extract_entities_from_text)
+        from src.entity_extractor import (SpacyEntityExtractor,
+                                          spacy_extract_entities)
         text = "Government of India and Ministry of Power"
-        entities = extract_entities_from_text(text)
+        entities = spacy_extract_entities(text)
         print(f"  ✅ EntityExtractor imported")
         print(f"  ✅ Entity extraction test:")
         print(f"     Input: '{text}'")
-        print(f"     Found: {sum(len(v) for v in entities.values())} entities")
-        for etype, vals in entities.items():
-            if vals:
-                print(f"       - {etype}: {vals}")
+        print(f"     Found: {len(entities)} entities")
+        for ent in entities[:5]:
+            print(f"       - {ent.get('type')}: {ent.get('name')}")
     except Exception as e:
         print(f"  ❌ Failed: {e}")
         return False

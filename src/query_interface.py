@@ -44,8 +44,8 @@ class GraphQueryInterface:
         Returns:
             List of result dictionaries
         """
-        with self.driver.session() as session:
-            result = session.run(query, params or {})
+        with self.driver.session() as session:  # type: ignore
+            result = session.run(query, params or {})  # type: ignore
             return [dict(record) for record in result]
     
     # ===== Pre-built Queries =====

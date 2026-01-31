@@ -6,7 +6,7 @@ Provides abstraction for reusable pipeline architecture.
 import logging
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, Generic, TypeVar
+from typing import Any, Generic, Optional, TypeVar
 
 T = TypeVar('T')
 
@@ -26,8 +26,8 @@ class PipelineComponent(ABC, Generic[T]):
         """
         self.name = name
         self.logger = logging.getLogger(name)
-        self.start_time: datetime = None
-        self.end_time: datetime = None
+        self.start_time: Optional[datetime] = None
+        self.end_time: Optional[datetime] = None
     
     @abstractmethod
     def execute(self, input_data: Any) -> T:
@@ -68,7 +68,7 @@ class PipelineComponent(ABC, Generic[T]):
             self.logger.error(f"❌ {self.name} failed: {e}", exc_info=True)
             raise
     
-    def get_duration(self) -> float:
+    def get_duration(self) -> Optional[float]:
         """Get execution duration in seconds."""
         if self.start_time and self.end_time:
             return (self.end_time - self.start_time).total_seconds()
